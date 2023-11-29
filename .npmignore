@@ -1,0 +1,13 @@
+.github/
+
+demo/
+
+src/
+
+.eslintrc
+.eslintignore
+
+.prettierrc
+
+tsconfig.json
+tsconfig.build.json

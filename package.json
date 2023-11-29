@@ -1,0 +1,49 @@
+{
+  "name": "http-simple-serve",
+  "description": "HTTP server for use with static resources.",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mime-types": "2.1.35"
+  },
+  "devDependencies": {
+    "@types/mime-types": "2.1.4",
+    "@types/node": "20.10.0",
+    "@typescript-eslint/eslint-plugin": "6.13.1",
+    "@typescript-eslint/parser": "6.13.1",
+    "eslint": "8.54.0",
+    "rimraf": "5.0.5",
+    "ts-node": "10.9.1",
+    "typescript": "5.3.2"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run clean && tsc -p ./tsconfig.build.json",
+    "test": "tsc && NODE_ENV=development node --test ./dist/*.test.js",
+    "test:coverage": "tsc && NODE_ENV=development node --test --experimental-test-coverage ./dist/*.test.js",
+    "lint": "eslint .",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "http",
+    "serve"
+  ],
+  "authors": [
+    {
+      "name": "Scott Doxey",
+      "email": "hello@scottdoxey.com",
+      "homepage": "http://scottdoxey.com/"
+    }
+  ],
+  "homepage": "https://github.com/neogeek/http-simple-serve",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/neogeek/http-simple-serve.git"
+  }
+}

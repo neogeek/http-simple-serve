@@ -66,7 +66,7 @@ export const tryGetContentType = (path: string) => {
  * @param {Number} options.port Port to run HTTP server from.
  * @param {String} options.root Relative path to the root of a given directory.
  * @param {String} options.entry The default resource to return when accessing the root of the main directory.
- * @return {[key: string]: { path: string; contentType: string; }} The list of file paths and content types.
+ * @return {Server<typeof IncomingMessage, typeof ServerResponse>} HTTP server.
  */
 const server = ({
   port,

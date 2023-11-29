@@ -61,7 +61,7 @@ export const tryGetContentType = (path: string) => {
 /**
  * Generates an HTTP server for serving up static resources.
  *
- * @example readStaticAssetsSync('./public', 'index.html');
+ * @example server({ port: 8080, root: './public', entry: 'index.html' });
  * @param {Object} options
  * @param {Number} options.port Port to run HTTP server from.
  * @param {String} options.root Relative path to the root of a given directory.

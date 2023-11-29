@@ -5,6 +5,7 @@
 [![Build](https://github.com/neogeek/http-simple-serve/actions/workflows/build.workflow.yml/badge.svg)](https://github.com/neogeek/http-simple-serve/actions/workflows/build.workflow.yml)
 [![Lint](https://github.com/neogeek/http-simple-serve/actions/workflows/lint.workflow.yml/badge.svg)](https://github.com/neogeek/http-simple-serve/actions/workflows/lint.workflow.yml)
 [![NPM Version](http://img.shields.io/npm/v/http-simple-serve.svg?style=flat)](https://www.npmjs.org/package/http-simple-serve)
+[![Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.0.0](https://github.com/neogeek/http-simple-serve/tree/HEAD) - (2023-11-29)
+## [v1.0.0](https://github.com/neogeek/http-simple-serve/tree/v1.0.0) - (2023-11-29)
 
 - Initial release! 🎉
 

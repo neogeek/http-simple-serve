@@ -5,7 +5,8 @@
     "http-simple-serve": "file:.."
   },
   "scripts": {
-    "start": "NODE_ENV=development node index.js"
+    "start": "NODE_ENV=development node index.js",
+    "custom": "NODE_ENV=development node custom.js"
   },
   "private": true
 }

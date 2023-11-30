@@ -197,4 +197,15 @@ void test('tryParseUrl', async t => {
   await t.test('get file in sub directory', () => {
     assert.strictEqual(tryParseUrl('/docs/index.html'), '/docs/index.html');
   });
+  await t.test('fail to parse url when url is missing', () => {
+    assert.throws(
+      () => {
+        tryParseUrl(undefined);
+      },
+      {
+        name: 'TypeError',
+        message: 'URL is missing',
+      }
+    );
+  });
 });

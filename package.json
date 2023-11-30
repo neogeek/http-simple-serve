@@ -1,6 +1,6 @@
 {
   "name": "http-simple-serve",
-  "description": "HTTP server for use with static resources.",
+  "description": "Simple HTTP server for use with static resources.",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

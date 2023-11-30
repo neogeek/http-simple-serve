@@ -1,6 +1,6 @@
 # http-simple-serve
 
-> ⚙️ HTTP server for use with static resources.
+> ⚙️ Simple HTTP server for use with static resources.
 
 [![Test](https://github.com/neogeek/http-simple-serve/actions/workflows/test.workflow.yml/badge.svg)](https://github.com/neogeek/http-simple-serve/actions/workflows/test.workflow.yml)
 [![Lint](https://github.com/neogeek/http-simple-serve/actions/workflows/lint.workflow.yml/badge.svg)](https://github.com/neogeek/http-simple-serve/actions/workflows/lint.workflow.yml)

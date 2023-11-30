@@ -129,6 +129,10 @@ const server = ({
 
       res.end(content);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('500', error);
+      }
+
       res.writeHead(500);
 
       res.end('Internal server error');

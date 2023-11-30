@@ -1,4 +1,4 @@
-import { extname, join } from 'node:path';
+import { basename, dirname, extname, join, normalize } from 'node:path';
 import { lstatSync, readdirSync, readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 
@@ -18,12 +18,7 @@ export const readStaticAssetsSync = (root: string, entry: string) => {
       path: string;
       contentType: string;
     };
-  } = {
-    '/': {
-      path: join(root, entry),
-      contentType: tryGetContentType(entry),
-    },
-  } as const;
+  } = {} as const;
 
   readdirSync(root, { encoding: 'utf8', recursive: true }).map(path => {
     const stat = lstatSync(join(root, path));
@@ -32,7 +27,14 @@ export const readStaticAssetsSync = (root: string, entry: string) => {
       return;
     }
 
-    staticFiles[`/${path}`] = {
+    if (basename(path) === entry) {
+      staticFiles[normalize(`/${dirname(path)}`)] = {
+        path: join(root, path),
+        contentType: tryGetContentType(path),
+      };
+    }
+
+    staticFiles[normalize(`/${path}`)] = {
       path: join(root, path),
       contentType: tryGetContentType(path),
     };

@@ -59,6 +59,26 @@ export const tryGetContentType = (path: string) => {
 };
 
 /**
+ * Returns a parsed URL. If the URL is to a directory, the trailing slash is removed.
+ *
+ * @example tryParseUrl('/docs/index.html');
+ * @example tryParseUrl('/docs/');
+ * @param {String} url The requested URL.
+ * @return {String} The parsed URL.
+ */
+export const tryParseUrl = (url: string | undefined) => {
+  if (!url) {
+    throw TypeError('URL is missing');
+  }
+
+  if (url === '/') {
+    return url;
+  }
+
+  return url.replace(/\/$/, '');
+};
+
+/**
  * Generates an HTTP server for serving up static resources.
  *
  * @example server({ port: 8080, root: './public', entry: 'index.html' });
@@ -81,13 +101,11 @@ const server = ({
 
   return createServer((req, res) => {
     try {
-      if (!req.url) {
-        return;
-      }
+      const url = tryParseUrl(req.url);
 
-      if (!Object.keys(staticFiles).includes(req.url)) {
+      if (!Object.keys(staticFiles).includes(url)) {
         if (process.env.NODE_ENV === 'development') {
-          console.log(`404 ${req.url}`);
+          console.log(`404 ${url}`);
         }
 
         res.writeHead(404);
@@ -97,7 +115,7 @@ const server = ({
         return;
       }
 
-      const { path, contentType } = staticFiles[req.url];
+      const { path, contentType } = staticFiles[url];
 
       if (process.env.NODE_ENV === 'development') {
         console.log(`200 ${path} ${contentType}`);

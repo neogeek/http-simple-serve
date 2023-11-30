@@ -5,7 +5,11 @@ import assert from 'node:assert';
 
 import { readFileSync } from 'node:fs';
 
-import http, { readStaticAssetsSync, tryGetContentType } from './index.js';
+import http, {
+  readStaticAssetsSync,
+  tryGetContentType,
+  tryParseUrl,
+} from './index.js';
 
 void test('http', async t => {
   await t.test('start server and serve up entry file', async () => {
@@ -141,5 +145,23 @@ void test('tryGetContentType', async t => {
         message: 'Path specified was not valid.',
       }
     );
+  });
+});
+
+void test('tryParseUrl', async t => {
+  await t.test('get root url', () => {
+    assert.strictEqual(tryParseUrl('/'), '/');
+  });
+  await t.test('get file path', () => {
+    assert.strictEqual(tryParseUrl('/index.html'), '/index.html');
+  });
+  await t.test('get sub directory with trailing slash', () => {
+    assert.strictEqual(tryParseUrl('/docs/'), '/docs');
+  });
+  await t.test('get sub directory without trailing slash', () => {
+    assert.strictEqual(tryParseUrl('/docs'), '/docs');
+  });
+  await t.test('get file in sub directory', () => {
+    assert.strictEqual(tryParseUrl('/docs/index.html'), '/docs/index.html');
   });
 });

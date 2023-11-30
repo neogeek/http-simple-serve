@@ -3,18 +3,16 @@
 import { readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 
-import { readStaticAssetsSync } from 'http-simple-serve';
+import { readStaticAssetsSync, tryParseUrl } from 'http-simple-serve';
 
 const staticFiles = readStaticAssetsSync('./public', 'index.html');
 
 createServer(async (req, res) => {
   try {
-    if (!req.url) {
-      return;
-    }
+    const url = tryParseUrl(req.url);
 
-    if (Object.keys(staticFiles).includes(req.url)) {
-      const { path, contentType } = staticFiles[req.url];
+    if (Object.keys(staticFiles).includes(url)) {
+      const { path, contentType } = staticFiles[url];
 
       const content = readFileSync(path);
 
@@ -23,7 +21,7 @@ createServer(async (req, res) => {
       res.writeHead(200);
 
       res.end(content);
-    } else if (req.url === '/robots.txt') {
+    } else if (url === '/robots.txt') {
       res.writeHead(200);
 
       res.end('User-agent: *\nAllow: /');

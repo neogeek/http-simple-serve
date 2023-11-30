@@ -3,7 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 
 import http, {
   readStaticAssetsSync,
@@ -125,6 +125,32 @@ void test('http', async t => {
       );
 
       assert.strictEqual(response.status, 404);
+
+      server.close();
+    }
+  );
+  await t.test(
+    'start server and fail to serve file that gets deleted after the server starts',
+    async () => {
+      writeFileSync('./demo/public/500.html', '');
+
+      const server = http({
+        port: 0,
+        root: './demo/public',
+        entry: 'index.html',
+      });
+
+      unlinkSync('./demo/public/500.html');
+
+      const address = server.address();
+
+      if (!address || typeof address !== 'object') {
+        throw new Error('Server address not set correctly.');
+      }
+
+      const response = await fetch(`http://localhost:${address.port}/500.html`);
+
+      assert.strictEqual(response.status, 500);
 
       server.close();
     }

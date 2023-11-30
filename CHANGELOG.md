@@ -1,5 +1,14 @@
 # Changelog
 
+## [HEAD](https://github.com/neogeek/http-simple-serve/tree/HEAD) - (2023-11-30)
+
+[Full Changelog](https://github.com/neogeek/http-simple-serve/compare/v1.0.0...HEAD)
+
+- [hotfix] Updated packages. [#4](https://github.com/neogeek/http-simple-serve/pull/4)
+- [feat] Added auto entry path for sub directories. [#3](https://github.com/neogeek/http-simple-serve/pull/3)
+- [hotfix] Added debug error log. [#2](https://github.com/neogeek/http-simple-serve/pull/2)
+- [feat] Added tryParseUrl method. [#1](https://github.com/neogeek/http-simple-serve/pull/1)
+
 ## [v1.0.0](https://github.com/neogeek/http-simple-serve/tree/v1.0.0) - (2023-11-29)
 
 - Initial release! 🎉

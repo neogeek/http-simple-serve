@@ -1,8 +1,8 @@
 # Changelog
 
-## [HEAD](https://github.com/neogeek/http-simple-serve/tree/HEAD) - (2023-11-30)
+## [v1.1.0](https://github.com/neogeek/http-simple-serve/tree/v1.1.0) - (2023-11-30)
 
-[Full Changelog](https://github.com/neogeek/http-simple-serve/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.com/neogeek/http-simple-serve/compare/v1.0.0...v1.1.0)
 
 - [hotfix] Updated packages. [#4](https://github.com/neogeek/http-simple-serve/pull/4)
 - [feat] Added auto entry path for sub directories. [#3](https://github.com/neogeek/http-simple-serve/pull/3)

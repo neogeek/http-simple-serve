@@ -12,29 +12,32 @@ import http, {
 } from './index.js';
 
 void test('http', async t => {
-  await t.test('start server and serve up entry file', async () => {
-    const server = http({
-      port: 0,
-      root: './demo/public',
-      entry: 'index.html',
-    });
+  await t.test(
+    'start server and serve an entry file (indirectly)',
+    async () => {
+      const server = http({
+        port: 0,
+        root: './demo/public',
+        entry: 'index.html',
+      });
 
-    const address = server.address();
+      const address = server.address();
 
-    if (!address || typeof address !== 'object') {
-      throw new Error('Server address not set correctly.');
+      if (!address || typeof address !== 'object') {
+        throw new Error('Server address not set correctly.');
+      }
+
+      const response = await fetch(`http://localhost:${address.port}`);
+
+      assert.strictEqual(
+        await response.text(),
+        readFileSync('./demo/public/index.html', 'utf8')
+      );
+
+      server.close();
     }
-
-    const response = await fetch(`http://localhost:${address.port}`);
-
-    assert.strictEqual(
-      await response.text(),
-      readFileSync('./demo/public/index.html', 'utf8')
-    );
-
-    server.close();
-  });
-  await t.test('start server and serve up HTML file', async () => {
+  );
+  await t.test('start server and serve an entry file (directly)', async () => {
     const server = http({
       port: 0,
       root: './demo/public',
@@ -56,7 +59,29 @@ void test('http', async t => {
 
     server.close();
   });
-  await t.test('start server and serve up CSS file', async () => {
+  await t.test('start server and serve a specific file', async () => {
+    const server = http({
+      port: 0,
+      root: './demo/public',
+      entry: 'index.html',
+    });
+
+    const address = server.address();
+
+    if (!address || typeof address !== 'object') {
+      throw new Error('Server address not set correctly.');
+    }
+
+    const response = await fetch(`http://localhost:${address.port}/index.html`);
+
+    assert.strictEqual(
+      await response.text(),
+      readFileSync('./demo/public/index.html', 'utf8')
+    );
+
+    server.close();
+  });
+  await t.test('start server and serve a CSS file', async () => {
     const server = http({
       port: 0,
       root: './demo/public',
@@ -115,13 +140,21 @@ void test('readStaticAssetsSync', async t => {
           contentType: 'text/html; charset=utf-8',
           path: 'demo/public/index.html',
         },
+        '/index.html': {
+          contentType: 'text/html; charset=utf-8',
+          path: 'demo/public/index.html',
+        },
         '/css/styles.css': {
           contentType: 'text/css; charset=utf-8',
           path: 'demo/public/css/styles.css',
         },
-        '/index.html': {
+        '/docs': {
           contentType: 'text/html; charset=utf-8',
-          path: 'demo/public/index.html',
+          path: 'demo/public/docs/index.html',
+        },
+        '/docs/index.html': {
+          contentType: 'text/html; charset=utf-8',
+          path: 'demo/public/docs/index.html',
         },
       }
     );
